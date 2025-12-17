@@ -3,89 +3,59 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>射箭教學探究實驗室——物理奇幻之旅</title>
-
+<title>射箭教學探究實驗室</title>
 <style>
-:root{
-  --bg:#0b1020; --card:#121a33; --text:#e8ecff; --muted:#b9c1ff;
-  --accent:#7cf0c8; --accent2:#9aa6ff; --warn:#ffcf5a;
-  --line:rgba(255,255,255,.12);
-}
-body{
-  margin:0;
-  font-family:system-ui,-apple-system,"PingFang TC","Microsoft JhengHei",sans-serif;
-  color:var(--text);
-  background:linear-gradient(180deg,#0b1020,#050610);
-}
-h1,h2{margin:0 0 8px}
-section{max-width:1100px;margin:auto;padding:24px}
-.card{
-  border:1px solid var(--line);
-  border-radius:18px;
-  padding:16px;
-  margin-top:16px;
-  background:rgba(255,255,255,.03);
-}
-img{width:100%;border-radius:14px}
-.caption{color:var(--muted);font-size:13px;margin-top:6px}
-.teacher{display:none;border:1px dashed var(--warn);padding:12px;border-radius:14px;margin-top:10px;color:var(--warn)}
+body{font-family:system-ui,"Microsoft JhengHei";margin:0;background:#0b1020;color:#e8ecff}
+section{max-width:960px;margin:auto;padding:24px}
+img{width:100%;border-radius:12px}
+.card{border:1px solid rgba(255,255,255,.15);border-radius:16px;padding:16px;margin-top:20px}
+.teacher{display:none;border:1px dashed #ffcf5a;padding:12px;margin-top:10px}
 </style>
 </head>
-
 <body>
-
 <section>
-<h1>🏹 射箭教學探究實驗室——物理奇幻之旅</h1>
-<p>從射箭操作出發，理解操縱變因、控制變因與應變變因。</p>
+<h1>🏹 射箭教學探究實驗室</h1>
+<p>學生版（網址加 ?teacher=1 可顯示教師提示）</p>
 </section>
 
 <section class="card">
-<h2>第一關：操縱變因</h2>
+<h2>第一關</h2>
 <img src="images/stage1_task1.png">
-<div class="caption">改變射箭所在高度，觀察射箭結果。</div>
-<div class="teacher">教師提示：請學生說出「我改了什麼？」</div>
+<div class="teacher">教師提示：操縱變因</div>
 </section>
 
 <section class="card">
-<h2>第二關：控制變因</h2>
+<h2>第二關</h2>
 <img src="images/stage2_task2.png">
-<div class="caption">固定射箭角度（30°），比較不同高度。</div>
-<div class="teacher">教師提示：為什麼角度不固定就不能比較？</div>
+<div class="teacher">教師提示：控制變因</div>
 </section>
 
 <section class="card">
-<h2>第三關：圖表轉換</h2>
+<h2>第三關</h2>
 <img src="images/stage3_task3.png">
-<div class="caption">將射箭結果轉換為圖表與數據。</div>
 </section>
 
 <section class="card">
-<h2>第四關：關卡導覽</h2>
+<h2>第四關</h2>
 <img src="images/stage4_welcome.png">
-<div class="caption">NPC 凱莉說明本關規則。</div>
 </section>
 
 <section class="card">
-<h2>第五關：任務清單</h2>
+<h2>第五關</h2>
 <img src="images/stage5_mission_list.png">
-<div class="caption">完成條件與測量距離。</div>
 </section>
 
 <section class="card">
-<h2>🎬 示範影片</h2>
-<div style="position:relative;padding-bottom:56.25%;height:0;">
-<iframe src="https://www.youtube.com/embed/FljFLq5gqrY"
-style="position:absolute;width:100%;height:100%;border-radius:14px"
+<h2>示範影片</h2>
+<iframe width="100%" height="315"
+src="https://www.youtube.com/embed/FljFLq5gqrY"
 allowfullscreen></iframe>
-</div>
 </section>
 
 <script>
-const isTeacher = new URLSearchParams(location.search).get("teacher")==="1";
-if(isTeacher){
-  document.querySelectorAll(".teacher").forEach(el=>el.style.display="block");
+if(new URLSearchParams(location.search).get("teacher")==="1"){
+ document.querySelectorAll(".teacher").forEach(e=>e.style.display="block");
 }
 </script>
-
 </body>
 </html>
