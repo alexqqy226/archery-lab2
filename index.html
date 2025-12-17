@@ -1,0 +1,538 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>射箭教學探究實驗室——物理奇幻之旅</title>
+  <meta name="description" content="從基礎操作到限時挑戰，帶你用射箭學物理變因。NPC 凱莉引導＋五階段闖關。" />
+  <style>
+    :root{
+      --bg:#0b1020;
+      --card:#121a33;
+      --card2:#0f1730;
+      --text:#e8ecff;
+      --muted:#b9c1ff;
+      --line: rgba(255,255,255,.12);
+      --accent:#7cf0c8;
+      --accent2:#9aa6ff;
+      --warn:#ffcf5a;
+      --shadow: 0 10px 30px rgba(0,0,0,.35);
+      --radius: 18px;
+      --max: 1100px;
+    }
+    *{ box-sizing:border-box; }
+    html{ scroll-behavior:smooth; }
+    body{
+      margin:0;
+      font-family: system-ui, -apple-system, "Segoe UI", "PingFang TC", "Microsoft JhengHei", sans-serif;
+      color:var(--text);
+      background: radial-gradient(1200px 600px at 20% -10%, rgba(124,240,200,.20), transparent 60%),
+                  radial-gradient(900px 600px at 90% 10%, rgba(154,166,255,.20), transparent 55%),
+                  linear-gradient(180deg, var(--bg), #070a14 60%, #050610);
+    }
+    a{ color:inherit; text-decoration:none; }
+    .wrap{ max-width:var(--max); margin:0 auto; padding: 18px 18px 70px; }
+
+    /* Top Nav */
+    .nav{
+      position: sticky; top:0;
+      backdrop-filter: blur(10px);
+      background: rgba(5,6,16,.55);
+      border-bottom: 1px solid var(--line);
+      z-index: 50;
+    }
+    .nav .inner{
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 10px 18px;
+      display:flex; gap:12px; align-items:center; justify-content:space-between;
+    }
+    .brand{
+      display:flex; align-items:center; gap:10px;
+      font-weight: 800;
+      letter-spacing:.2px;
+      white-space:nowrap;
+    }
+    .badge{
+      font-size: 12px;
+      color: #08121a;
+      background: linear-gradient(90deg, var(--accent), var(--accent2));
+      padding: 4px 10px;
+      border-radius: 999px;
+      box-shadow: var(--shadow);
+    }
+    .links{ display:flex; gap:10px; flex-wrap:wrap; justify-content:flex-end; }
+    .links a{
+      font-size: 14px;
+      color: var(--muted);
+      padding: 8px 10px;
+      border-radius: 999px;
+      border: 1px solid transparent;
+    }
+    .links a:hover{
+      color: var(--text);
+      border-color: var(--line);
+      background: rgba(255,255,255,.04);
+    }
+
+    /* Hero */
+    .hero{
+      margin-top: 14px;
+      border: 1px solid var(--line);
+      background: linear-gradient(135deg, rgba(124,240,200,.12), rgba(154,166,255,.10)),
+                  linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02));
+      border-radius: calc(var(--radius) + 6px);
+      box-shadow: var(--shadow);
+      overflow:hidden;
+      position:relative;
+    }
+    .hero::after{
+      content:"";
+      position:absolute; inset:-120px -200px auto auto;
+      width: 520px; height: 520px;
+      background: radial-gradient(circle at 30% 30%, rgba(124,240,200,.35), transparent 55%),
+                  radial-gradient(circle at 70% 70%, rgba(154,166,255,.35), transparent 55%);
+      filter: blur(2px);
+      transform: rotate(18deg);
+      pointer-events:none;
+    }
+    .hero .grid{
+      display:grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap: 18px;
+      padding: 22px;
+      position:relative;
+      z-index:2;
+    }
+    h1{
+      margin:0 0 8px;
+      font-size: clamp(28px, 3.4vw, 44px);
+      line-height:1.12;
+    }
+    .sub{
+      margin: 0 0 14px;
+      color: var(--muted);
+      font-size: clamp(15px, 1.4vw, 18px);
+      line-height:1.6;
+    }
+    .ctaRow{ display:flex; gap:10px; flex-wrap:wrap; margin-top: 14px; }
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center;
+      gap:8px;
+      padding: 10px 14px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.06);
+      color: var(--text);
+      font-weight: 650;
+      font-size: 14px;
+    }
+    .btn:hover{ background: rgba(255,255,255,.10); }
+    .btn.primary{
+      border-color: transparent;
+      background: linear-gradient(90deg, var(--accent), var(--accent2));
+      color: #071018;
+    }
+    .btn.primary:hover{ filter: brightness(1.05); }
+
+    .keliCard{
+      border: 1px solid var(--line);
+      background: rgba(9,12,26,.55);
+      border-radius: var(--radius);
+      padding: 14px;
+    }
+    .keliTop{ display:flex; gap:12px; align-items:center; }
+    .avatar{
+      width: 44px; height:44px; border-radius: 14px;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      display:grid; place-items:center;
+      color:#071018; font-weight:900;
+      box-shadow: var(--shadow);
+      flex: 0 0 auto;
+    }
+    .keliName{ font-weight: 800; }
+    .keliHint{
+      margin-top: 10px;
+      color: var(--muted);
+      line-height: 1.65;
+      font-size: 14px;
+    }
+    .mini{
+      margin-top: 12px;
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:10px;
+    }
+    .pill{
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.04);
+      border-radius: 14px;
+      padding: 10px;
+      font-size: 13px;
+      color: var(--muted);
+    }
+    .pill b{ color: var(--text); }
+
+    /* Section */
+    section{ margin-top: 22px; }
+    .sectionTitle{
+      display:flex; align-items:flex-end; justify-content:space-between; gap:10px;
+      margin: 22px 0 10px;
+    }
+    .sectionTitle h2{
+      margin:0;
+      font-size: clamp(20px, 2.2vw, 28px);
+      letter-spacing:.2px;
+    }
+    .sectionTitle p{
+      margin:0;
+      color: var(--muted);
+      font-size: 14px;
+      line-height:1.5;
+    }
+
+    /* Core concepts */
+    .cards{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+    }
+    .card{
+      border: 1px solid var(--line);
+      background: linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
+      border-radius: var(--radius);
+      padding: 14px;
+      box-shadow: var(--shadow);
+      min-height: 150px;
+    }
+    .card .tag{
+      display:inline-block;
+      font-size: 12px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      color: var(--muted);
+      background: rgba(255,255,255,.03);
+      margin-bottom: 8px;
+    }
+    .card h3{ margin: 6px 0 6px; font-size: 18px; }
+    .card p{ margin: 0; color: var(--muted); line-height:1.65; }
+
+    /* Stages */
+    .stageGrid{
+      display:grid;
+      grid-template-columns: 1fr;
+      gap: 12px;
+    }
+    .stage{
+      border: 1px solid var(--line);
+      background: linear-gradient(135deg, rgba(124,240,200,.07), rgba(154,166,255,.06)),
+                  rgba(255,255,255,.02);
+      border-radius: var(--radius);
+      padding: 14px;
+      box-shadow: var(--shadow);
+    }
+    .stageHead{
+      display:flex; gap:10px; align-items:flex-start; justify-content:space-between;
+      flex-wrap:wrap;
+      border-bottom: 1px dashed rgba(255,255,255,.14);
+      padding-bottom: 10px;
+      margin-bottom: 10px;
+    }
+    .stageNo{
+      display:inline-flex; align-items:center; gap:8px;
+      font-weight: 900;
+    }
+    .dot{
+      width: 12px; height:12px; border-radius: 99px;
+      background: linear-gradient(90deg, var(--accent), var(--accent2));
+      box-shadow: 0 0 0 4px rgba(124,240,200,.10);
+      margin-top: 6px;
+    }
+    .stageTitle{ font-size: 18px; margin: 0; }
+    .stageMeta{
+      display:flex; gap:8px; flex-wrap:wrap; justify-content:flex-end;
+    }
+    .chip{
+      font-size: 12px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.03);
+      color: var(--muted);
+      white-space:nowrap;
+    }
+    .kv{
+      display:grid;
+      grid-template-columns: 92px 1fr;
+      gap: 10px 12px;
+      align-items:start;
+    }
+    .k{ color: var(--muted); font-size: 13px; padding-top:2px; }
+    .v{ color: var(--text); font-size: 14px; line-height:1.7; }
+    .hintBox{
+      margin-top: 10px;
+      padding: 10px 12px;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.03);
+      color: var(--muted);
+      font-size: 13px;
+      line-height:1.6;
+    }
+    .hintBox b{ color: var(--warn); }
+
+    /* Footer */
+    footer{
+      margin-top: 26px;
+      border-top: 1px solid var(--line);
+      padding-top: 16px;
+      color: var(--muted);
+      font-size: 13px;
+      line-height:1.7;
+    }
+
+    /* Responsive */
+    @media (max-width: 900px){
+      .hero .grid{ grid-template-columns: 1fr; }
+      .cards{ grid-template-columns: 1fr; }
+      .mini{ grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="nav">
+    <div class="inner">
+      <div class="brand">
+        <span>🏹 射箭教學探究實驗室</span>
+        <span class="badge">RWD 單頁版</span>
+      </div>
+      <nav class="links" aria-label="頁面導覽">
+        <a href="#hero">首頁</a>
+        <a href="#concepts">核心變因</a>
+        <a href="#stages">五階闖關</a>
+        <a href="#goal">學習任務</a>
+      </nav>
+    </div>
+  </div>
+
+  <main class="wrap">
+    <!-- HERO -->
+    <section id="hero" class="hero">
+      <div class="grid">
+        <div>
+          <h1>射箭教學探究實驗室——物理奇幻之旅</h1>
+          <p class="sub">從基礎操作到限時挑戰，帶你用射箭學物理變因。</p>
+
+          <div class="ctaRow">
+            <a class="btn primary" href="#stages">開始闖關</a>
+            <a class="btn" href="#concepts">先看三大變因</a>
+          </div>
+
+          <div style="margin-top:14px; color:var(--muted); font-size:14px; line-height:1.7;">
+            <b style="color:var(--text);">歡迎語：</b>
+            同學你好，我是虛擬教學員凱莉。準備好拿起弓箭，探索射箭距離與角度的奧妙了嗎？
+          </div>
+        </div>
+
+        <aside class="keliCard" aria-label="凱莉引導卡">
+          <div class="keliTop">
+            <div class="avatar">K</div>
+            <div>
+              <div class="keliName">NPC 凱莉（教學員）</div>
+              <div style="color:var(--muted); font-size:13px; margin-top:2px;">
+                你的任務導遊｜提示｜物理發現
+              </div>
+            </div>
+          </div>
+
+          <div class="keliHint">
+            ✅ 建議學習節奏：<br/>
+            先完成第一、二關（建立角度—距離直覺）→ 第三關看重播與圖表 → 第四關做「控制變因」的嚴謹實驗 → 最後第五關挑戰反應與應用。
+          </div>
+
+          <div class="mini">
+            <div class="pill"><b>你會改什麼？</b><br/>射箭角度</div>
+            <div class="pill"><b>你要固定什麼？</b><br/>弓高度、射箭速度</div>
+            <div class="pill"><b>你要量什麼？</b><br/>射箭距離</div>
+            <div class="pill"><b>關鍵觀念</b><br/>45° 附近最遠</div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <!-- CORE CONCEPTS -->
+    <section id="concepts">
+      <div class="sectionTitle">
+        <div>
+          <h2>核心學習重點：三大變因</h2>
+          <p>把射箭當成「探究實驗」：改一個、固定兩個、量一個。</p>
+        </div>
+      </div>
+
+      <div class="cards">
+        <article class="card">
+          <span class="tag">Manipulated Variable</span>
+          <h3>操縱變因：射箭角度</h3>
+          <p>你可以自由調整的數值。不同角度會改變拋體運動的軌跡，進而影響射程。</p>
+        </article>
+
+        <article class="card">
+          <span class="tag">Controlled Variable</span>
+          <h3>控制變因：弓高度、射箭速度</h3>
+          <p>必須固定不動的數值。只要它們變了，你就很難判斷「距離變化」到底是不是角度造成的。</p>
+        </article>
+
+        <article class="card">
+          <span class="tag">Dependent Variable</span>
+          <h3>應變變因：射箭距離</h3>
+          <p>實驗的結果。你要用同一套方式紀錄（例如每次射擊後記下距離或用圖表輸出）。</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- 5 STAGES -->
+    <section id="stages">
+      <div class="sectionTitle">
+        <div>
+          <h2>五階段闖關導覽</h2>
+          <p>每一關都有任務、目標與凱莉提示（或物理發現）。</p>
+        </div>
+      </div>
+
+      <div class="stageGrid">
+        <article class="stage" id="stage1">
+          <div class="stageHead">
+            <div class="stageNo"><span class="dot"></span><div>
+              <div class="stageTitle">第一關：基礎操作與變因介紹</div>
+              <div style="color:var(--muted); font-size:13px; margin-top:2px;">先熟悉操作，再建立角度—距離的初步直覺</div>
+            </div></div>
+            <div class="stageMeta">
+              <span class="chip">目標：45° 以下</span>
+              <span class="chip">射出：至少 5 枝</span>
+            </div>
+          </div>
+          <div class="kv">
+            <div class="k">任務</div>
+            <div class="v">熟悉操作：使用左手控制器拿弓，右手拉弓。</div>
+
+            <div class="k">目標</div>
+            <div class="v">在射箭角度 <b>45 度以下</b>的範圍，射出至少 <b>5</b> 枝箭。</div>
+          </div>
+          <div class="hintBox"><b>凱莉小提示：</b>角度在 45° 以內時，角度越大，射得越遠喔！</div>
+        </article>
+
+        <article class="stage" id="stage2">
+          <div class="stageHead">
+            <div class="stageNo"><span class="dot"></span><div>
+              <div class="stageTitle">第二關：進階角度挑戰</div>
+              <div style="color:var(--muted); font-size:13px; margin-top:2px;">觀察「45° 以上」的距離變化，找出反轉現象</div>
+            </div></div>
+            <div class="stageMeta">
+              <span class="chip">範圍：45°～90°</span>
+              <span class="chip">射出：至少 5 枝</span>
+            </div>
+          </div>
+          <div class="kv">
+            <div class="k">任務</div>
+            <div class="v">調整挑戰難度：把角度拉到 45° 以上。</div>
+
+            <div class="k">目標</div>
+            <div class="v">在射箭角度 <b>45 度以上、90 度以下</b>的範圍，射出至少 <b>5</b> 枝箭。</div>
+          </div>
+          <div class="hintBox"><b>物理發現：</b>這時會發現，角度越大，距離反而變近了，這與第一關正好相反！</div>
+        </article>
+
+        <article class="stage" id="stage3">
+          <div class="stageHead">
+            <div class="stageNo"><span class="dot"></span><div>
+              <div class="stageTitle">第三關：圖表轉換與觀測</div>
+              <div style="color:var(--muted); font-size:13px; margin-top:2px;">用重播功能看軌跡，用數據驗證你的直覺</div>
+            </div></div>
+            <div class="stageMeta">
+              <span class="chip">技能：重播觀察</span>
+              <span class="chip">技能：圖表驗證</span>
+            </div>
+          </div>
+          <div class="kv">
+            <div class="k">任務</div>
+            <div class="v">利用「重播」功能觀察射箭軌跡。</div>
+
+            <div class="k">學習</div>
+            <div class="v">觀察 45° 角以下的拋物線軌跡，並透過圖表數據驗證你的實驗結果。</div>
+          </div>
+          <div class="hintBox"><b>凱莉提醒：</b>把「你看到的軌跡」和「你記下的距離」對照起來，你就開始做真正的科學探究了。</div>
+        </article>
+
+        <article class="stage" id="stage4">
+          <div class="stageHead">
+            <div class="stageNo"><span class="dot"></span><div>
+              <div class="stageTitle">第四關：變因控制實驗</div>
+              <div style="color:var(--muted); font-size:13px; margin-top:2px;">做一個「只改角度」的嚴謹實驗</div>
+            </div></div>
+            <div class="stageMeta">
+              <span class="chip">固定：高度約 4.6</span>
+              <span class="chip">角度：10/20/30°</span>
+            </div>
+          </div>
+          <div class="kv">
+            <div class="k">任務</div>
+            <div class="v">固定弓的高度（約 <b>4.6</b> 單位），分別射出 <b>10°、20°、30°</b> 的箭。</div>
+
+            <div class="k">目標</div>
+            <div class="v">學習如何精準控制變因，確保實驗準確度（讓結果能被比較、能被重複）。</div>
+          </div>
+          <div class="hintBox"><b>凱莉小提示：</b>如果同學做出「每個角度多射幾次」的重複測量，再取平均，結果會更可靠。</div>
+        </article>
+
+        <article class="stage" id="stage5">
+          <div class="stageHead">
+            <div class="stageNo"><span class="dot"></span><div>
+              <div class="stageTitle">第五關：終極限時挑戰</div>
+              <div style="color:var(--muted); font-size:13px; margin-top:2px;">把角度策略與控制技巧整合成表現</div>
+            </div></div>
+            <div class="stageMeta">
+              <span class="chip">時間：1 分鐘</span>
+              <span class="chip">目標：盡量全中</span>
+            </div>
+          </div>
+          <div class="kv">
+            <div class="k">任務</div>
+            <div class="v">綜合應用所學：快速判斷角度、穩定操作、抓住節奏。</div>
+
+            <div class="k">目標</div>
+            <div class="v">在 <b>1 分鐘</b>內，盡量射中畫面中出現的所有標靶！</div>
+          </div>
+          <div class="hintBox"><b>虛擬人物提醒：</b>你已經不只是「玩射箭」，而是在用物理與探究策略提升命中率。</div>
+        </article>
+      </div>
+    </section>
+
+    <!-- GOAL / TASK -->
+    <section id="goal">
+      <div class="sectionTitle">
+        <div>
+          <h2>學習任務（可直接貼到作業或學習單）</h2>
+          <p>老師可依班級程度增減（例如加上「記錄表」或「角度—距離圖」）。</p>
+        </div>
+      </div>
+
+      <div class="card" style="background:linear-gradient(135deg, rgba(255,207,90,.10), rgba(154,166,255,.06)), rgba(255,255,255,.02);">
+        <h3 style="margin-top:0;">任務清單</h3>
+        <p style="margin:0; color:var(--muted); line-height:1.8;">
+          1) 完成第一～二關：用自己的話描述「角度增加」時距離如何變化（45° 以下 vs 45° 以上）。<br/>
+          2) 完成第三關：用重播觀察軌跡，寫出你看到的拋物線特徵（例如：最高點、落點距離）。<br/>
+          3) 完成第四關：固定弓高度約 4.6，做 10°/20°/30° 的比較，至少每個角度射 3 次並取平均（可選）。<br/>
+          4) 完成第五關：1 分鐘限時挑戰後，反思你用了哪些「角度策略」提升命中。<br/>
+        </p>
+      </div>
+    </section>
+
+    <footer>
+      <div><b style="color:var(--text);">教學備註：</b>此頁面是「可直接上架」的單頁網站骨架。你之後可以加上：資料記錄表、學生作品牆、QR code、或嵌入影片/情境導入素材。</div>
+      <div style="margin-top:6px;">© 你的課程名稱 / 學校 / 團隊（可自行修改）</div>
+    </footer>
+  </main>
+</body>
+</html>
