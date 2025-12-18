@@ -70,22 +70,16 @@ body{margin:0;font-family:system-ui,-apple-system,"PingFang TC","Microsoft Jheng
   const mode  = (p.get("mode") || "student").toLowerCase();
 
   const STAGES = {
-    1:{ title:"第一關：操縱變因", yt:"https://youtube.com/shorts/7RBeQjLWVM4",
-        notes:"提問：你改變了哪一個變因？為什麼要只改一個變因？" },
-    2:{ title:"第二關：控制變因", yt:"https://youtube.com/shorts/8p91BXl7puQ",
-        notes:"強調固定角度與初速，否則距離無法比較。" },
-    3:{ title:"第三關：圖表轉換", yt:"https://youtube.com/shorts/gz6Sw8WXBjk",
-        notes:"引導學生把操作結果轉成圖表，討論證據。" },
-    4:{ title:"第四關：任務導覽", yt:"https://youtube.com/shorts/P7PFLBWUBxs",
-        notes:"先理解規則，再開始操作。" },
-    5:{ title:"第五關：任務清單與挑戰", yt:"https://youtube.com/shorts/FljFLq5gqrY",
-        notes:"討論如何定義完成條件與表現指標。" }
+    1:{ title:"第一關：操縱變因", yt:"https://youtube.com/shorts/7RBeQjLWVM4", notes:"提問：你改變了哪一個變因？為什麼要只改一個變因？" },
+    2:{ title:"第二關：控制變因", yt:"https://youtube.com/shorts/8p91BXl7puQ", notes:"強調固定角度與初速，否則距離無法比較。" },
+    3:{ title:"第三關：圖表轉換", yt:"https://youtube.com/shorts/gz6Sw8WXBjk", notes:"引導學生把操作結果轉成圖表，討論證據。" },
+    4:{ title:"第四關：任務導覽", yt:"https://youtube.com/shorts/P7PFLBWUBxs", notes:"先理解規則，再開始操作。" },
+    5:{ title:"第五關：任務清單與挑戰", yt:"https://youtube.com/shorts/FljFLq5gqrY", notes:"討論如何定義完成條件與表現指標。" }
   };
 
   const d = STAGES[stage] || STAGES[1];
   document.getElementById("stageTitle").textContent = d.title;
-  document.getElementById("modePill").textContent =
-    "模式：" + (mode==="teacher"?"教師版":"學生版");
+  document.getElementById("modePill").textContent = "模式：" + (mode==="teacher"?"教師版":"學生版");
 
   document.getElementById("openYT").href = d.yt;
   document.getElementById("openYTBtn").href = d.yt;
@@ -93,9 +87,7 @@ body{margin:0;font-family:system-ui,-apple-system,"PingFang TC","Microsoft Jheng
   const m = d.yt.match(/shorts\/([A-Za-z0-9_-]+)/) || d.yt.match(/v=([A-Za-z0-9_-]+)/);
   const vid = m ? m[1] : "";
 
-  const embed = "https://www.youtube-nocookie.com/embed/" + vid +
-    "?start=3&autoplay=1&mute=1&playsinline=1&rel=0&modestbranding=1";
-
+  const embed = "https://www.youtube-nocookie.com/embed/" + vid + "?start=3&autoplay=1&mute=1&playsinline=1&rel=0&modestbranding=1";
   document.getElementById("ytFrame").src = embed;
 
   const fallback = document.getElementById("fallback");
@@ -107,5 +99,22 @@ body{margin:0;font-family:system-ui,-apple-system,"PingFang TC","Microsoft Jheng
   }
 })();
 </script>
+
+
+<!-- Floating Back-to-Course button (Google Sites) -->
+<a href="https://sites.google.com/view/archery-lab2/" target="_blank" rel="noopener"
+   aria-label="回到課程首頁（Google Sites）"
+   title="回到課程首頁（Google Sites）"
+   style="
+     position:fixed; right:18px; bottom:18px; z-index:9999;
+     background:#0d6efd; color:#fff; text-decoration:none;
+     padding:12px 16px; border-radius:999px; font-weight:800;
+     box-shadow:0 6px 18px rgba(0,0,0,.28);
+     font-family:system-ui,-apple-system,'PingFang TC','Microsoft JhengHei',sans-serif;
+     letter-spacing:.3px;
+   ">
+  ⬅ 回課程首頁
+</a>
+
 </body>
 </html>
