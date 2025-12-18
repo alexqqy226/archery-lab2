@@ -3,125 +3,117 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>射箭教學探究實驗室</title>
+<title>射箭教學探究實驗室｜學生版</title>
 <style>
-body{font-family:system-ui,"Microsoft JhengHei";margin:0;background:#0b1020;color:#e8ecff}
-section{max-width:960px;margin:auto;padding:24px}
-img{width:100%;border-radius:12px}
-.card{border:1px solid rgba(255,255,255,.15);border-radius:16px;padding:16px;margin-top:20px}
-.teacher{display:none;border:1px dashed #ffcf5a;padding:12px;margin-top:10px}
+:root{
+  --bg:#0b1020; --card:rgba(255,255,255,.03); --text:#e8ecff; --muted:#b9c1ff;
+  --line:rgba(255,255,255,.14); --accent:#7cf0c8; --accent2:#9aa6ff; --warn:#ffcf5a;
+}
+body{margin:0;font-family:system-ui,-apple-system,"PingFang TC","Microsoft JhengHei",sans-serif;background:linear-gradient(180deg,#0b1020,#050610);color:var(--text);}
+header{max-width:1100px;margin:auto;padding:26px 24px 10px;}
+h1{margin:0 0 10px;font-size:36px;letter-spacing:.5px}
+p{margin:8px 0;color:var(--muted)}
+main{max-width:1100px;margin:auto;padding:8px 24px 40px;}
+.card{border:1px solid var(--line);border-radius:18px;background:var(--card);padding:16px;margin-top:16px;}
+.card h2{margin:0 0 10px;font-size:22px}
+.caption{margin-top:10px;color:var(--muted);line-height:1.7;font-size:14px}
+a.thumb{display:block;border-radius:14px;overflow:hidden;border:1px solid var(--line);text-decoration:none;}
+a.thumb:hover{border-color:rgba(124,240,200,.6)}
+img{display:block;width:100%;height:auto}
+.btnRow{display:flex;gap:10px;flex-wrap:wrap;margin-top:10px}
+.btn{display:inline-block;padding:10px 14px;border-radius:999px;background:linear-gradient(90deg,var(--accent),var(--accent2));color:#071018;font-weight:800;text-decoration:none}
+.small{font-size:13px;color:var(--muted)}
+.teacherHint{display:none;border:1px dashed rgba(255,207,90,.6);background:rgba(255,207,90,.08);padding:12px;border-radius:14px;margin-top:10px;color:var(--muted);line-height:1.7}
+.teacherHint b{color:var(--warn)}
 </style>
 </head>
 <body>
-<section>
-<h1>🏹 射箭教學探究實驗室</h1>
-<p>學生版（網址加 ?teacher=1 可顯示教師提示）</p>
-</section>
-
-<section class="card">
-<h2>第一關</h2>
-<img src="images/stage1_task1.png"
-     alt="第一關 任務畫面"
-     onerror="this.style.display='none'; this.insertAdjacentHTML('afterend',
-       '<div style=&quot;color:#ffcf5a;padding:10px;border:1px dashed rgba(255,207,90,.6);border-radius:12px;margin-top:8px&quot;>⚠️ 找不到圖片：images/stage1_task1.png<br>請確認 repo 內 images/ 資料夾與檔名大小寫完全一致。</div>'
-     );">
-<div class="teacher">教師提示：操縱變因</div>
-</section>
-
-
-  
-<section class="card">
-<h2>第二關</h2>
-<img src="images/stage2_task2.png"
-     alt="第二關 任務畫面"
-     onerror="this.style.display='none'; this.insertAdjacentHTML('afterend',
-       '<div style=&quot;color:#ffcf5a;padding:10px;border:1px dashed rgba(255,207,90,.6);border-radius:12px;margin-top:8px&quot;>⚠️ 找不到圖片：images/stage1_task1.png<br>請確認 repo 內 images/ 資料夾與檔名大小寫完全一致。</div>'
-     );">
-<div class="teacher">教師提示：控制變因</div>
-</section>
-
-<section class="card">
-<h2>第三關</h2>
-<img src="images/stage3_task3.png"
-     alt="第三關 任務畫面"
-     onerror="this.style.display='none'; this.insertAdjacentHTML('afterend',
-       '<div style=&quot;color:#ffcf5a;padding:10px;border:1px dashed rgba(255,207,90,.6);border-radius:12px;margin-top:8px&quot;>⚠️ 找不到圖片：images/stage1_task1.png<br>請確認 repo 內 images/ 資料夾與檔名大小寫完全一致。</div>'
-     );">
-</section>
-
-<section class="card">
-<h2>第四關</h2>
-<img src="images/stage4_welcome.png"
-     alt="第四關 任務畫面"
-     onerror="this.style.display='none'; this.insertAdjacentHTML('afterend',
-       '<div style=&quot;color:#ffcf5a;padding:10px;border:1px dashed rgba(255,207,90,.6);border-radius:12px;margin-top:8px&quot;>⚠️ 找不到圖片：images/stage1_task1.png<br>請確認 repo 內 images/ 資料夾與檔名大小寫完全一致。</div>'
-     );">
-</section>
-
-<section class="card">
-<h2>第五關</h2>
-<img src="images/stage5_mission_list.png"
-     alt="第五關 任務畫面"
-     onerror="this.style.display='none'; this.insertAdjacentHTML('afterend',
-       '<div style=&quot;color:#ffcf5a;padding:10px;border:1px dashed rgba(255,207,90,.6);border-radius:12px;margin-top:8px&quot;>⚠️ 找不到圖片：images/stage1_task1.png<br>請確認 repo 內 images/ 資料夾與檔名大小寫完全一致。</div>'
-     );">
-</section>
-
-<section class="card">
-<h2>示範影片</h2>
-<section class="card" id="video">
-  <h2>🎬 示範影片</h2>
-
-  <!-- 1) 嘗試嵌入（如果 YouTube 禁止嵌入，就會顯示 fallback） -->
-  <div id="ytWrap" style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:14px;border:1px solid rgba(255,255,255,.15);">
-    <iframe
-      id="ytFrame"
-      src="https://www.youtube-nocookie.com/embed/FljFLq5gqrY?rel=0&modestbranding=1&playsinline=1"
-      title="示範影片"
-      style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;"
-      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-      allowfullscreen>
-    </iframe>
+<header>
+  <h1>🏹 射箭教學探究實驗室</h1>
+  <p>學生版（網址加 <code>?teacher=1</code> 可顯示教師提示）</p>
+  <div class="btnRow">
+    <a class="btn" href="video1.html" target="_blank" rel="noopener">▶ 第一關示範影片</a>
+    <a class="btn" href="video.html?stage=1&mode=teacher" target="_blank" rel="noopener" style="background:linear-gradient(90deg,#ffcf5a,#9aa6ff)">👨‍🏫 第一關教師模式</a>
   </div>
+  <p class="small">提示：如果影片無法內嵌（YouTube 153），video.html 會自動顯示「前往 YouTube」按鈕。</p>
+</header>
 
-  <!-- 2) 如果嵌入失敗（錯誤 153 常見），就改顯示「前往 YouTube」 -->
-  <div id="ytFallback" style="display:none;margin-top:12px;padding:14px;border-radius:14px;border:1px dashed rgba(255,207,90,.55);background:rgba(255,207,90,.08);color:#e8ecff;line-height:1.7;">
-    <b style="color:#ffcf5a;">此影片目前不允許在外部網站嵌入播放（YouTube 設定限制）。</b><br>
-    請改用下方按鈕在 YouTube 開啟觀看：
-    <div style="margin-top:10px;">
-      <a href="https://youtube.com/shorts/FljFLq5gqrY" target="_blank" rel="noopener"
-         style="display:inline-block;padding:10px 14px;border-radius:999px;
-                background:linear-gradient(90deg,#7cf0c8,#9aa6ff);color:#071018;font-weight:700;text-decoration:none;">
-        前往 YouTube 觀看影片
-      </a>
+<main>
+  <section class="card" id="stage1">
+    <h2>第一關：操縱變因</h2>
+    <a class="thumb" href="video1.html" target="_blank" rel="noopener" aria-label="觀看第一關示範影片">
+      <img src="images/stage1_task1.png" alt="第一關 任務畫面"
+           onerror="this.style.display='none'; this.insertAdjacentHTML('afterend',
+             '<div style=&quot;color:#ffcf5a;padding:10px;border:1px dashed rgba(255,207,90,.6);border-radius:12px&quot;>⚠️ 找不到圖片：images/stage1_task1.png（請確認 images/ 資料夾與檔名大小寫）</div>');">
+    </a>
+    <div class="caption">👉 點擊圖片觀看第一關示範影片（video1.html）</div>
+    <div class="teacherHint"><b>教師提示：</b>引導學生說出「我改了什麼（高度/角度）？我量到什麼（距離）？」</div>
+  </section>
+
+  <section class="card" id="stage2">
+    <h2>第二關：控制變因</h2>
+    <a class="thumb" href="video2.html" target="_blank" rel="noopener" aria-label="觀看第二關示範影片">
+      <img src="images/stage2_task2.png" alt="第二關 任務畫面"
+           onerror="this.style.display='none'; this.insertAdjacentHTML('afterend',
+             '<div style=&quot;color:#ffcf5a;padding:10px;border:1px dashed rgba(255,207,90,.6);border-radius:12px&quot;>⚠️ 找不到圖片：images/stage2_task2.png（請確認 images/ 資料夾與檔名大小寫）</div>');">
+    </a>
+    <div class="caption">👉 點擊圖片觀看第二關示範影片（video2.html）</div>
+    <div class="teacherHint"><b>教師提示：</b>強調「角度固定」的理由：才能比較距離差異是否由高度造成。</div>
+  </section>
+
+  <section class="card" id="stage3">
+    <h2>第三關：圖表轉換</h2>
+    <a class="thumb" href="video3.html" target="_blank" rel="noopener" aria-label="觀看第三關示範影片">
+      <img src="images/stage3_task3.png" alt="第三關 任務畫面"
+           onerror="this.style.display='none'; this.insertAdjacentHTML('afterend',
+             '<div style=&quot;color:#ffcf5a;padding:10px;border:1px dashed rgba(255,207,90,.6);border-radius:12px&quot;>⚠️ 找不到圖片：images/stage3_task3.png（請確認 images/ 資料夾與檔名大小寫）</div>');">
+    </a>
+    <div class="caption">👉 點擊圖片觀看第三關示範影片（video3.html）</div>
+    <div class="teacherHint"><b>教師提示：</b>把「距離」轉成表格/圖表，引導學生用證據支持結論。</div>
+  </section>
+
+  <section class="card" id="stage4">
+    <h2>第四關：任務導覽</h2>
+    <a class="thumb" href="video4.html" target="_blank" rel="noopener" aria-label="觀看第四關示範影片">
+      <img src="images/stage4_welcome.png" alt="第四關 導覽畫面"
+           onerror="this.style.display='none'; this.insertAdjacentHTML('afterend',
+             '<div style=&quot;color:#ffcf5a;padding:10px;border:1px dashed rgba(255,207,90,.6);border-radius:12px&quot;>⚠️ 找不到圖片：images/stage4_welcome.png（請確認 images/ 資料夾與檔名大小寫）</div>');">
+    </a>
+    <div class="caption">👉 點擊圖片觀看第四關示範影片（video4.html）</div>
+    <div class="teacherHint"><b>教師提示：</b>先讀規則再操作：本關「固定什麼？改變什麼？」</div>
+  </section>
+
+  <section class="card" id="stage5">
+    <h2>第五關：任務清單與挑戰</h2>
+    <a class="thumb" href="video5.html" target="_blank" rel="noopener" aria-label="觀看第五關示範影片">
+      <img src="images/stage5_mission_list.png" alt="第五關 任務清單"
+           onerror="this.style.display='none'; this.insertAdjacentHTML('afterend',
+             '<div style=&quot;color:#ffcf5a;padding:10px;border:1px dashed rgba(255,207,90,.6);border-radius:12px&quot;>⚠️ 找不到圖片：images/stage5_mission_list.png（請確認 images/ 資料夾與檔名大小寫）</div>');">
+    </a>
+    <div class="caption">👉 點擊圖片觀看第五關示範影片（video5.html）</div>
+    <div class="teacherHint"><b>教師提示：</b>討論「怎樣算完成？怎樣算進步？」把表現轉成可比較的指標。</div>
+  </section>
+
+  <section class="card">
+    <h2>🎬 影片播放頁（通用）</h2>
+    <p class="caption">你也可以用同一頁切換關卡與教師模式：</p>
+    <div class="btnRow">
+      <a class="btn" href="video.html?stage=1" target="_blank" rel="noopener">video.html?stage=1</a>
+      <a class="btn" href="video.html?stage=2" target="_blank" rel="noopener">video.html?stage=2</a>
+      <a class="btn" href="video.html?stage=3" target="_blank" rel="noopener">video.html?stage=3</a>
+      <a class="btn" href="video.html?stage=4" target="_blank" rel="noopener">video.html?stage=4</a>
+      <a class="btn" href="video.html?stage=5" target="_blank" rel="noopener">video.html?stage=5</a>
+      <a class="btn" href="video.html?stage=1&mode=teacher" target="_blank" rel="noopener" style="background:linear-gradient(90deg,#ffcf5a,#9aa6ff)">教師模式</a>
     </div>
-  </div>
-
-  <script>
-    // 嵌入如果被擋（錯誤 153 常見），通常 iframe 會一直黑畫面。
-    // 這裡用「超時」方式：6 秒內沒成功載入就顯示 fallback（避免頁面看起來壞掉）
-    (function(){
-      const frame = document.getElementById("ytFrame");
-      const fallback = document.getElementById("ytFallback");
-
-      let loaded = false;
-      frame.addEventListener("load", () => { loaded = true; });
-
-      setTimeout(() => {
-        // 就算觸發 load，也可能仍被限制；所以採用保守策略：直接提供 fallback 按鈕
-        // 你也可以改成：if (!loaded) 才顯示
-        fallback.style.display = "block";
-      }, 1200);
-    })();
-  </script>
-</section>
-
-</section>
+  </section>
+</main>
 
 <script>
-if(new URLSearchParams(location.search).get("teacher")==="1"){
- document.querySelectorAll(".teacher").forEach(e=>e.style.display="block");
-}
+  // teacher=1 顯示提示（學生版可開啟教師提示）
+  const isTeacher = new URLSearchParams(location.search).get("teacher")==="1";
+  if(isTeacher){
+    document.querySelectorAll(".teacherHint").forEach(el=>el.style.display="block");
+  }
 </script>
 </body>
 </html>
