@@ -22,9 +22,11 @@ a.thumb:hover{border-color:rgba(124,240,200,.6)}
 img{display:block;width:100%;height:auto}
 .btnRow{display:flex;gap:10px;flex-wrap:wrap;margin-top:10px}
 .btn{display:inline-block;padding:10px 14px;border-radius:999px;background:linear-gradient(90deg,var(--accent),var(--accent2));color:#071018;font-weight:800;text-decoration:none}
+.btn.secondary{background:rgba(255,255,255,.08);color:var(--text);border:1px solid var(--line)}
 .small{font-size:13px;color:var(--muted)}
 .teacherHint{display:none;border:1px dashed rgba(255,207,90,.6);background:rgba(255,207,90,.08);padding:12px;border-radius:14px;margin-top:10px;color:var(--muted);line-height:1.7}
 .teacherHint b{color:var(--warn)}
+hr{border:0;border-top:1px solid rgba(255,255,255,.10);margin:14px 0}
 </style>
 </head>
 <body>
@@ -34,11 +36,24 @@ img{display:block;width:100%;height:auto}
   <div class="btnRow">
     <a class="btn" href="video1.html" target="_blank" rel="noopener">▶ 第一關示範影片</a>
     <a class="btn" href="video.html?stage=1&mode=teacher" target="_blank" rel="noopener" style="background:linear-gradient(90deg,#ffcf5a,#9aa6ff)">👨‍🏫 第一關教師模式</a>
+    <a class="btn secondary" href="about.html" target="_blank" rel="noopener">📘 教育理念與教學設計</a>
   </div>
   <p class="small">影片頁（video.html）會嘗試自動預覽：第 3 秒起、靜音自動播放（可能被瀏覽器阻擋）。</p>
 </header>
 
 <main>
+  <!-- 新增：教育理念與教學設計摘要 -->
+  <section class="card" id="about">
+    <h2>📘 教育理念與教學設計（摘要）</h2>
+    <p style="margin-top:6px">本課程以「射箭情境」作為探究載體，強調 <b>情境化學習</b>、<b>探究導向</b>、<b>證據論證</b> 與 <b>公平比較（控制變因）</b>。</p>
+    <hr>
+    <p class="small" style="margin:0 0 8px"><b>三大變因：</b>操縱變因＝射箭角度；控制變因＝弓高/射速；應變變因＝射箭距離。</p>
+    <p class="small" style="margin:0 0 10px"><b>五階段流程：</b>Stage1 基礎操作 → Stage2 進階角度 → Stage3 圖表觀測 → Stage4 變因控制 → Stage5 挑戰與反思。</p>
+    <div class="btnRow">
+      <a class="btn" href="about.html" target="_blank" rel="noopener">開啟完整理念與設計說明</a>
+    </div>
+  </section>
+
   <section class="card" id="stage1">
     <h2>第一關：操縱變因</h2>
     <a class="thumb" href="video1.html" target="_blank" rel="noopener">
@@ -88,7 +103,7 @@ img{display:block;width:100%;height:auto}
 <script>
   const isTeacher = new URLSearchParams(location.search).get("teacher")==="1";
   if(isTeacher){
-    document.querySelectorAll(".teacherHint").forEach(el=>el.style.display="block");
+    document.querySelectorAll(".teacherHint").forEach(function(el){ el.style.display="block"; });
   }
 </script>
 
