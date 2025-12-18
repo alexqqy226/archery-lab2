@@ -1,7 +1,8 @@
-# Archery Lab Website Pack
-
-- index.html：學生版（預設隱藏教師提示）
-- teacher.html：教師版（預設顯示教師提示）
-- images/：示意圖與教學截圖素材
-
-上線方式：把整包內容上傳到 GitHub Repo 根目錄即可（images 資料夾也要一起上傳）。
+上架方式（GitHub Pages）：
+1) 把本 zip 內所有 html 上傳到 repo 根目錄（覆蓋同名檔案）。
+2) images/ 資料夾仍需在 repo 根目錄（含五張圖）。
+3) 測試：
+- 學生版：/index.html
+- 教師版：/teacher.html
+- 影片：/video1.html~video5.html 或 /video.html?stage=...&mode=...
+注意：自動預覽為 best-effort；若瀏覽器阻擋自動播放，頁面會提供「前往 YouTube」按鈕。
