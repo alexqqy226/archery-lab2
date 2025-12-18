@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>示範影片｜射箭教學探究實驗室</title>
+<style>
+  :root{
+    --bg:#0b1020; --text:#e8ecff; --muted:#b9c1ff; --line:rgba(255,255,255,.15);
+    --accent:#7cf0c8; --accent2:#9aa6ff; --warn:#ffcf5a;
+  }
+  body{margin:0;font-family:system-ui,-apple-system,"PingFang TC","Microsoft JhengHei",sans-serif;background:var(--bg);color:var(--text);}
+  .wrap{max-width:980px;margin:auto;padding:22px;}
+  .top{display:flex;gap:12px;align-items:center;flex-wrap:wrap;justify-content:space-between;margin-bottom:10px;}
+  .pill{border:1px solid var(--line);border-radius:999px;padding:6px 10px;color:var(--muted);font-size:13px;}
+  .card{border:1px solid var(--line);border-radius:16px;padding:16px;background:rgba(255,255,255,.03);margin-top:14px;}
+  .btn{display:inline-block;margin-top:10px;padding:10px 14px;border-radius:999px;background:linear-gradient(90deg,var(--accent),var(--accent2));color:#071018;font-weight:800;text-decoration:none;}
+  .link{color:var(--accent2);text-decoration:none}
+  .grid{display:grid;grid-template-columns:1fr;gap:12px}
+  .teacherBox{display:none;border:1px dashed rgba(255,207,90,.6);background:rgba(255,207,90,.08);border-radius:16px;padding:14px;color:var(--muted);line-height:1.7}
+  .teacherBox b{color:var(--warn)}
+  .iframeWrap{position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:14px;border:1px solid var(--line);}
+  .iframeWrap iframe{position:absolute;inset:0;width:100%;height:100%;border:0;}
+  .fallback{display:none;margin-top:10px;padding:12px;border-radius:14px;border:1px dashed rgba(255,207,90,.55);background:rgba(255,207,90,.08);line-height:1.7}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="top">
+    <div>
+      <h1 style="margin:0 0 6px">🎬 示範影片｜<span id="stageTitle">第 ? 關</span></h1>
+      <div class="pill" id="modePill">模式：學生版</div>
+    </div>
+    <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center">
+      <a class="link" href="index.html">← 回教學頁</a>
+      <a class="link" id="openYT" target="_blank" rel="noopener">前往 YouTube ↗</a>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="grid">
+      <div class="iframeWrap">
+        <iframe id="ytFrame"
+          title="示範影片"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowfullscreen></iframe>
+      </div>
+
+      <div class="fallback" id="fallback">
+        <b style="color:var(--warn)">此影片目前不允許在外部網站嵌入播放（YouTube 設定限制）。</b><br>
+        請改用下方按鈕在 YouTube 觀看：
+        <div><a class="btn" id="openYTBtn" target="_blank" rel="noopener">▶ 前往 YouTube 觀看</a></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card teacherBox" id="teacherBox">
+    <b>教師提示（Teacher Notes）</b><br>
+    <div id="teacherNotes"></div>
+  </div>
+
+  <div class="card" style="color:var(--muted);line-height:1.8">
+    <b style="color:var(--text)">操作說明：</b>
+    <div>• 參數切關卡：<code>?stage=1</code> ~ <code>?stage=5</code></div>
+    <div>• 切教師模式：<code>&mode=teacher</code></div>
+    <div>• 例：<code>video.html?stage=1&mode=teacher</code></div>
+  </div>
+</div>
+
+<script>
+(function(){
+  const params = new URLSearchParams(location.search);
+  const stage = Number(params.get("stage") || 1);
+  const mode = (params.get("mode") || "student").toLowerCase();
+
+  const STAGES = {
+    1: { title: "第一關：操縱變因", yt: "https://youtube.com/shorts/FljFLq5gqrY",
+         notes: "提問：你『改』了什麼？你『量』到什麼？<br>提醒：一次只改一個變因，其他先固定。" },
+    2: { title: "第二關：控制變因", yt: "https://youtube.com/shorts/FljFLq5gqrY",
+         notes: "提問：為什麼要固定角度/初速？<br>延伸：不固定會造成什麼比較上的問題？" },
+    3: { title: "第三關：圖表轉換", yt: "https://youtube.com/shorts/FljFLq5gqrY",
+         notes: "提問：哪些資料可以當作證據？<br>延伸：圖表如何幫助你做出結論？" },
+    4: { title: "第四關：任務導覽", yt: "https://youtube.com/shorts/FljFLq5gqrY",
+         notes: "提醒：先讀規則再操作。<br>提問：本關要求你固定什麼？改變什麼？" },
+    5: { title: "第五關：任務清單/挑戰", yt: "https://youtube.com/shorts/FljFLq5gqrY",
+         notes: "提問：你如何驗證自己真的進步？<br>延伸：如何設計更公平的評量指標？" },
+  };
+
+  const data = STAGES[stage] || STAGES[1];
+
+  document.getElementById("stageTitle").textContent = data.title;
+  document.getElementById("modePill").textContent = "模式：" + (mode === "teacher" ? "教師版" : "學生版");
+
+  const openYT = document.getElementById("openYT");
+  const openYTBtn = document.getElementById("openYTBtn");
+  openYT.href = data.yt;
+  openYTBtn.href = data.yt;
+
+  const idMatch = data.yt.match(/shorts\/([A-Za-z0-9_-]+)/) || data.yt.match(/watch\?v=([A-Za-z0-9_-]+)/);
+  const vid = idMatch ? idMatch[1] : "FljFLq5gqrY";
+  const embed = "https://www.youtube-nocookie.com/embed/" + vid + "?rel=0&modestbranding=1&playsinline=1";
+
+  document.getElementById("ytFrame").src = embed;
+
+  const fallback = document.getElementById("fallback");
+  setTimeout(() => { fallback.style.display = "block"; }, 900);
+
+  if(mode === "teacher"){
+    const box = document.getElementById("teacherBox");
+    const notes = document.getElementById("teacherNotes");
+    box.style.display = "block";
+    notes.innerHTML = data.notes;
+  }
+})();
+</script>
+</body>
+</html>
