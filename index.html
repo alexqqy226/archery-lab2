@@ -47,9 +47,53 @@ img{width:100%;border-radius:12px}
 
 <section class="card">
 <h2>示範影片</h2>
-<iframe width="100%" height="315"
-src="https://www.youtube.com/embed/FljFLq5gqrY"
-allowfullscreen></iframe>
+<section class="card" id="video">
+  <h2>🎬 示範影片</h2>
+
+  <!-- 1) 嘗試嵌入（如果 YouTube 禁止嵌入，就會顯示 fallback） -->
+  <div id="ytWrap" style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:14px;border:1px solid rgba(255,255,255,.15);">
+    <iframe
+      id="ytFrame"
+      src="https://www.youtube-nocookie.com/embed/FljFLq5gqrY?rel=0&modestbranding=1&playsinline=1"
+      title="示範影片"
+      style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+      allowfullscreen>
+    </iframe>
+  </div>
+
+  <!-- 2) 如果嵌入失敗（錯誤 153 常見），就改顯示「前往 YouTube」 -->
+  <div id="ytFallback" style="display:none;margin-top:12px;padding:14px;border-radius:14px;border:1px dashed rgba(255,207,90,.55);background:rgba(255,207,90,.08);color:#e8ecff;line-height:1.7;">
+    <b style="color:#ffcf5a;">此影片目前不允許在外部網站嵌入播放（YouTube 設定限制）。</b><br>
+    請改用下方按鈕在 YouTube 開啟觀看：
+    <div style="margin-top:10px;">
+      <a href="https://youtube.com/shorts/FljFLq5gqrY" target="_blank" rel="noopener"
+         style="display:inline-block;padding:10px 14px;border-radius:999px;
+                background:linear-gradient(90deg,#7cf0c8,#9aa6ff);color:#071018;font-weight:700;text-decoration:none;">
+        前往 YouTube 觀看影片
+      </a>
+    </div>
+  </div>
+
+  <script>
+    // 嵌入如果被擋（錯誤 153 常見），通常 iframe 會一直黑畫面。
+    // 這裡用「超時」方式：6 秒內沒成功載入就顯示 fallback（避免頁面看起來壞掉）
+    (function(){
+      const frame = document.getElementById("ytFrame");
+      const fallback = document.getElementById("ytFallback");
+
+      let loaded = false;
+      frame.addEventListener("load", () => { loaded = true; });
+
+      setTimeout(() => {
+        // 就算觸發 load，也可能仍被限制；所以採用保守策略：直接提供 fallback 按鈕
+        // 你也可以改成：if (!loaded) 才顯示
+        fallback.style.display = "block";
+      }, 1200);
+    })();
+  </script>
+</section>
+
 </section>
 
 <script>
